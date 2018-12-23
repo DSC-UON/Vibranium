@@ -171,6 +171,10 @@ h2, .h2 {
   line-height: 1.44;
 }
 
+a:hover{
+ color: white;
+}
+
 p {
   font-size: 1rem;
   line-height: 25px;
