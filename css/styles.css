@@ -1950,3 +1950,10 @@ color: black;
   box-shadow: none;
   background: #d4d4d4;
 }
+.nav-logo{
+  font-size: 1.7rem;
+  max-width: 50px;
+}
+.dsc-logo{
+  max-width: 150px;
+}
