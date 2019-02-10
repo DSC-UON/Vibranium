@@ -1,76 +1,3 @@
-/*====================================================*/
-/*  CHRISTMAS TEXT EFFECTS                            */
-/*====================================================*/
-
-function christmas(){
-  var TxtRotate = function(el, toRotate, period) {
-    this.toRotate = toRotate;
-    this.el = el;
-    this.loopNum = 0;
-    this.period = parseInt(period, 10) || 2000;
-    this.txt = '';
-    this.tick();
-    this.isDeleting = false;
-  };
-
-  TxtRotate.prototype.tick = function() {
-    var i = this.loopNum % this.toRotate.length;
-    var fullTxt = this.toRotate[i];
-
-    if (this.isDeleting) {
-      this.txt = fullTxt.substring(0, this.txt.length - 1);
-    } else {
-      this.txt = fullTxt.substring(0, this.txt.length + 1);
-    }
-
-    this.el.innerHTML = '<span class="wrap">'+this.txt+'</span>';
-
-    var that = this;
-    var delta = 300 - Math.random() * 100;
-
-    if (this.isDeleting) { delta /= 2; }
-
-    if (!this.isDeleting && this.txt === fullTxt) {
-      delta = this.period;
-      this.isDeleting = true;
-    } else if (this.isDeleting && this.txt === '') {
-      this.isDeleting = false;
-      this.loopNum++;
-      delta = 500;
-    }
-
-    setTimeout(function() {
-      that.tick();
-    }, delta);
-  };
-
-  date = new Date();
-  if(date.getMonth() == 11 && date.getDate() > 15 && date.getDate() <= 31){
-    var elements = document.getElementsByClassName('txt-rotate');
-    for (var i=0; i<elements.length; i++) {
-      var toRotate = elements[i].getAttribute('data-rotate');
-      var period = elements[i].getAttribute('data-period');
-      if (toRotate) {
-        new TxtRotate(elements[i], JSON.parse(toRotate), period);
-      }
-    }
-    // INJECT CSS
-    var css = document.createElement("style");
-    css.type = "text/css";
-    css.innerHTML = ".txt-rotate > .wrap { border-right: 0.08em solid #666 }";
-    document.body.appendChild(css);
-    console.log("Season greetings:)");
-    document.getElementById("chrismaslights").classList.add("lightrope");
-    document.getElementById("chrismaslights").classList.remove("hidden");
-  }
-}
-window.onload = function() {
-  christmas();
-  console.log("You're a curious one. Haha")
-};
-// END OF CHRISTMAS TEXT EFFECTS
-
-
 $(window).on('load', function() {
   'use strict';
   $('#loading').addClass('hidden');
@@ -145,41 +72,24 @@ $(document).ready(function(){
   /*====================================================*/
   /* team SLIDER                                 */
   /*====================================================*/
+  $("#carouselExample").on("slide.bs.carousel", function (e) {
+      var $e = $(e.relatedTarget);
+      var idx = $e.index();
+      var itemsPerSlide = 3;
+      var totalItems = $(".carousel-item").length;
 
-
-  var $ClientsSlider = $('.team-slider');
-  if ($ClientsSlider.length > 0) {
-    $ClientsSlider.owlCarousel({
-      loop: true,
-      center: true,
-      margin: 0,
-      items: 1,
-      nav: false,
-      dots: true,
-      lazyLoad: true,
-      dotsContainer: '.dots'
-    })
-    $('.owl-dot').on('click', function() {
-      $(this).addClass('active').siblings().removeClass('active');
-      $ClientsSlider.trigger('to.owl.carousel', [$(this).index(), 300]);
-    });
-  }
-
-  var swiper = new Swiper('.screen-slider', {
-    direction: 'horizontal',
-    slidesPerView: 1,
-    spaceBetween: 1,
-    parallax: true,
-    breakpoints: {
-      480: {
-        slidesPerView: 1,
-        spaceBetween: 40
+      if (idx >= totalItems-(itemsPerSlide-1)) {
+          var it = itemsPerSlide - (totalItems - idx);
+          for (var i=0; i<it; i++) {
+              // append slides to end
+              if (e.direction==="left") {
+                  $(".carousel-item").eq(i).appendTo(".carousel-inner");
+              }
+              else {
+                  $(".carousel-item").eq(0).appendTo(".carousel-inner");
+              }
+          }
       }
-    },
-    navigation: {
-      nextEl: '.swiper-button-next',
-      prevEl: '.swiper-button-prev',
-    }
   });
 
   /*====================================================*/
