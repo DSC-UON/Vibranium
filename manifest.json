@@ -1,11 +1,11 @@
 {
-  "background_color": "#2F5BE7",
+  "background_color": "#ffffff",
   "display": "standalone",
   "orientation":"portrait",
-  "theme_color": "#2F5BE7",
+  "theme_color": "#ffffff",
   "short_name": "DSC UoN",
   "name": "DSC University of Nairobi",
-  "description": "Developer Student Clubs is a Google Developers program for university students to learn mobile and web development skills",
+  "description": "A dope tech comunity",
   "lang": "en-US",
   "icons": [
     {
@@ -24,7 +24,7 @@
       "type": "image/png"
     },
     {
-      "src": "images/icon.png",
+      "src": "/images/android-chrome-144x144.png",
       "sizes": "144x144",
       "type": "image/png"
     },
