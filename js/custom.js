@@ -48,6 +48,8 @@ $(document).ready(function(){
 
   $('.navbar-toggler').on('click', function(e) {
     $(this).toggleClass('menu-is-expanded');
+    $('#logo_text').toggleClass('text-white');
+    $('#logo_img').toggleClass('br-5');
   });
 
   $(document).on('click', '.navbar-collapse.show', function(e) {

@@ -39,6 +39,11 @@ forth-letter {
   color: #189E59;
   font-weight: 400;
 }
+
+.br-5 {
+    border-radius: 5px;
+}
+
 a {
   line-height: 1;
   color: #2F5BE7;
